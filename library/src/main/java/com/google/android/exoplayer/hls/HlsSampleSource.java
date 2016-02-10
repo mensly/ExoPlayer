@@ -435,7 +435,7 @@ public final class HlsSampleSource implements SampleSource, SampleSourceReader, 
   }
 
   private void discardSamplesForDisabledTracks(HlsExtractorWrapper extractor, long timeUs) {
-    if (!extractor.isPrepared()) {
+    if (!extractor.isPrepared() || trackEnabledStates == null) {
       return;
     }
     for (int i = 0; i < trackEnabledStates.length; i++) {
@@ -446,7 +446,7 @@ public final class HlsSampleSource implements SampleSource, SampleSourceReader, 
   }
 
   private boolean haveSamplesForEnabledTracks(HlsExtractorWrapper extractor) {
-    if (!extractor.isPrepared()) {
+    if (!extractor.isPrepared() || trackEnabledStates == null) {
       return false;
     }
     for (int i = 0; i < trackEnabledStates.length; i++) {
